@@ -1,8 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 :root {
   --main-color: #ff9800;
-}
-* {
-  box-sizing: border-box;
+  --main-transition: 0.3s;
 }
 body {
   font-family: "Open Sans", sans-serif;
@@ -10,13 +9,13 @@ body {
 /* Start Settings Box */
 .settings-box {
   position: fixed;
-  left: -250px;
+  left: -200px;
   top: 0;
   background-color: #fff;
-  width: 250px;
-  z-index: 1000;
+  width: 200px;
+  z-index: 999;
   min-height: 100vh;
-  transition: 0.3s;
+  transition: var(--main-transition);
 }
 .settings-box.open {
   left: 0;
@@ -25,85 +24,57 @@ body {
   position: absolute;
   right: -30px;
   top: 100px;
+  text-align: center;
   background-color: #fff;
-  text-align: center;
   cursor: pointer;
 }
-.settings-box .toggle-settings .fa-gear {
-  padding: 8px 0;
+.settings-box .toggle-settings i {
   width: 30px;
+  padding: 8px 0;
 }
-.settings-box .option-box {
-  padding: 10px;
-  text-align: center;
-  background-color: #eee;
-  margin: 10px;
+.settings-box .settings-container .option-box {
+  padding: 20px;
 }
-.settings-box .option-box h4 {
-  margin: 0;
+.settings-box .settings-container .option-box h4 {
   color: #666;
-  font-size: 14px;
+  margin: 0;
 }
-.settings-box .option-box .colors-list {
-  list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 10px 0 0;
-}
-.settings-box .option-box .colors-list li {
-  width: 24px;
-  height: 24px;
+.settings-box .settings-container .option-box .colors-list li {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
   border-radius: 50%;
-  cursor: pointer;
+  opacity: .5;
   display: inline-block;
-  border: 3px solid #eee;
-  opacity: 0.5;
 }
-.settings-box .option-box .colors-list li.active {
-  border-color: #fff;
+.settings-box .settings-container .option-box .colors-list li.active {
   opacity: 1;
 }
-.settings-box .option-box .colors-list li:first-child {
+.settings-box .settings-container .option-box .colors-list li:first-child {
   background-color: #ff9800;
 }
-.settings-box .option-box .colors-list li:nth-child(2) {
-  background-color: #e91e63;
+.settings-box .settings-container .option-box .colors-list li:nth-child(2) {
+  background-color: #E91E63;
 }
-.settings-box .option-box .colors-list li:nth-child(3) {
+.settings-box .settings-container .option-box .colors-list li:nth-child(3) {
   background-color: #009688;
 }
-.settings-box .option-box .colors-list li:nth-child(4) {
+.settings-box .settings-container .option-box .colors-list li:nth-child(4) {
   background-color: #03a9f4;
 }
-.settings-box .option-box .colors-list li:nth-child(5) {
-  background-color: #e91e63;
-}
-.settings-box .random-backgrounds .yes,
-.settings-box .random-backgrounds .no {
-  width: 50px;
-  background-color: #009688;
-  color: #fff;
-  margin-top: 10px;
-  display: inline-block;
-  font-size: 12px;
-  padding: 4px 10px;
-  font-weight: bold;
-  border-radius: 4px;
-  opacity: 0.5;
-  cursor: pointer;
-}
-.settings-box .random-backgrounds span.active {
-  opacity: 1;
+.settings-box .settings-container .option-box .colors-list li:last-child {
+  background-color: #4caf50;
 }
 /* End Settings Box */
-/* Start Landing Page*/
+/* Start Landing Page */
 .landing-page {
   min-height: 100vh;
-  background-image: url(../imgs/05.jpg);
-  background-color: cover;
+  background-image: url(../imgs/01.jpg);
+  background-size: cover;
+  position: relative;
 }
 .landing-page .overlay {
-  background-color: hsl(0deg 0% 0% / 60%);
+  background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -122,11 +93,9 @@ body {
   width: 300px;
   padding: 15px;
   font-weight: bold;
-  color: #8fddf2;
 }
 .header-area .links {
   list-style: none;
-  padding: 0;
   width: 100%;
   text-align: right;
   padding-left: 0;
@@ -146,7 +115,7 @@ body {
 .header-area .links li a.active {
   color: var(--main-color);
 }
-.introduction-text {
+.landing-page .introduction-text {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -154,18 +123,17 @@ body {
   z-index: 2;
   color: #fff;
   text-align: center;
-  width: 100%;
 }
-.introduction-text h1 {
+.landing-page .introduction-text h1 {
   font-size: 34px;
   margin: 0 0 12px;
 }
-.introduction-text h1 span {
+.landing-page .introduction-text h1 span {
   color: var(--main-color);
 }
-.introduction-text h1 p {
+.landing-page .introduction-text p {
   line-height: 1.6;
   font-size: 20px;
   margin: 0;
 }
-/* End Landing Page*/
+/* End Landing Page */

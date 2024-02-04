@@ -1,124 +1,66 @@
-// Check If Thre's Local Storage Color OPtion
+// Check IF Thers's local StorOpage Color Option 
 let mainColors = localStorage.getItem("color_option");
 
 if (mainColors !== null) {
+  //
+  console.log("Local Storage Is Empty you can set It on Root Now");
+  console.log(localStorage.getItem("color_option"));
+  // Set Color On Root
   document.documentElement.style.setProperty("--main-color", mainColors);
-
-  //Remove  Active ClassFrom All Colors List Item
-  document.querySelectorAll(".colors-list li").forEach((element) => {
+  // Remove class Active
+  document.querySelectorAll(".colors-list li").forEach(element => {
     element.classList.remove("active");
-
-    //  Add Active Class On Element With Data-Color === Local Storage Item
-    if (element.dataset.color === mainColors) {
-      //  Add Active Class
-      element.classList.add("active");
+    // Add class Active
+    if (mainColors === element.dataset.color ){
+      element.classList.add("active")
     }
   });
-}
-
-// Random BAckground Option
-let backgroundOption = true;
-// Variable To Control The Background Interval
-let backgroundInterval;
-//Check IFThere's Local Storage Random Background Item
-let backgroundLocalItem = localStorage.getItem("background_option");
-
-// Check If Random Background Local Is Not Empty
-if (backgroundLocalItem !== null) {
-  console.log(backgroundLocalItem);
-  console.log(typeof backgroundLocalItem);
-
-  if (backgroundLocalItem === "true") {
-    backgroundOption = true;
-  } else {
-    backgroundOption = false;
-  }
-  // Remove Active Class From All Spans
-  document.querySelectorAll(".random-backgrounds span").forEach((element) => {
-    element.classList.remove("active");
-  });
-
-  if (backgroundLocalItem === "false") {
-    document.querySelector(".random-backgrounds .no").classList.add("active");
-  } else {
-    document.querySelector(".random-backgrounds .yes").classList.add("active");
-  }
-}
-
-// Toggle spin Class On Icon
-document.querySelector(".toggle-settings .fa-gear").onclick = function () {
-  // Toggle Class Fa-spin For Rotat On Self
-  this.classList.toggle("fa-spin");
-  // Toggle Class Fa-spin For Rotat
-  document.querySelector(".settings-box").classList.toggle("open");
 };
 
-// Switch Colors
-const colorsLi = document.querySelectorAll(".colors-list li");
 
-// Loop On All List Items
-colorsLi.forEach((li) => {
-  // Click On Every LIst Items
+// Start Toggle Spin class On Icon
+document.querySelector(".toggle-settings .fa-gear").onclick = function () {
+  // Toggle Class Fa-spin for Rotation on Self
+  this.classList.toggle("fa-spin");
+
+  // Toggle Class
+  document.querySelector(".settings-box").classList.toggle("open");
+};
+// End Toggle Spin class On Icon
+// Start Option Colors
+const colorsLi = document.querySelectorAll(".colors-list li");
+// Loop On List Lis
+colorsLi.forEach(li => {
+  // Click On Every List Items
   li.addEventListener("click", (e) => {
+    
     // Set Color On Root
-    document.documentElement.style.setProperty(
-      "--main-color",
-      e.target.dataset.color
-    );
+    document.documentElement.style.setProperty("--main-color", e.target.dataset.color);
     // Set Color On Local Storage
     localStorage.setItem("color_option", e.target.dataset.color);
-    // Remove Active Class From All Childerns
-    e.target.parentElement.querySelectorAll(".active").forEach((element) => {
+    // Remove ACtive Class From All Childrens
+    e.target.parentElement.querySelectorAll(".active").forEach(element =>{
       element.classList.remove("active");
     });
-    // Add Active Class On Self
-    e.target.classList.add("active");
-  });
+    // Add cLASS on Self
+    e.target.classList.add("active")
+  })
 });
-// Switch Random Backgrounds Opton
-const randombackEl = document.querySelectorAll(".random-backgrounds span");
+// End Option Colors
+// Start Select Landing Page Elemant
+// Change Bacground Image Url
 
-// Loop On All List Items
-randombackEl.forEach((span) => {
-  // Click On Every Span
-  span.addEventListener("click", (e) => {
-    // Remove Active Class From All Childerns
-    e.target.parentElement.querySelectorAll(".active").forEach((element) => {
-      element.classList.remove("active");
-    });
-    // Add Active Class On Self
-    e.target.classList.add("active");
-
-    if (e.target.dataset.background === "yes") {
-      backgroundOption = true;
-      randomizeImgs();
-      localStorage.setItem("background_option", true);
-    } else {
-      backgroundOption = false;
-      clearInterval(backgroundInterval);
-      localStorage.setItem("background_option", false);
-    }
-  });
-});
-
-// Select Landing Page Element
 let landingPage = document.querySelector(".landing-page");
 
-// Get Array Of Imgs
+// Get Arry Of Imgs
 let imgsArray = ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"];
 
-// function To Random Imgs
-function randomizeImgs() {
-  if (backgroundOption === true) {
-    backgroundInterval = setInterval(() => {
-      // Get Random Number
-      let randomNumber = Math.floor(Math.random() * imgsArray.length);
+// Change Background Imgs url
 
-      // Change Background Image Url
-      landingPage.style.backgroundImage =
-        'url("imgs/' + imgsArray[randomNumber] + '")';
-    }, 10000);
-  }
-}
+setInterval(() => {
+  let randomIamgs = Math.floor(Math.random() * imgsArray.length);
 
-randomizeImgs();
+  landingPage.style.background = 'url("imgs/' + imgsArray[randomIamgs] + '")';
+}, 10000);
+
+// End Select Landing Page Elemant
